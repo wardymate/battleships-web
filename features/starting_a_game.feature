@@ -6,7 +6,7 @@ Feature: Starting the game
   Scenario: Registering
     Given I am on the homepage
     And I enter a name into the form
-    When I click "New Game"
+    When I click "submit"
     Then I should see "The board"
 
   Scenario: Inputting name
