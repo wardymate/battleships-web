@@ -10,7 +10,7 @@ class BattleShips < Sinatra::Base
   end
 
   get '/Play' do
-    "What's your name?"
+    "The board"
   end
 
 
