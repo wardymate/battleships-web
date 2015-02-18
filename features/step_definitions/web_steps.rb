@@ -22,3 +22,8 @@ end
 Given(/^I do not enter a name into the form$/) do
   fill_in('name', :with => '')
 end
+
+
+Then(/^I should stay on the homepage "(.*?)"$/) do |text|
+  expect(page).to have_content text
+end
