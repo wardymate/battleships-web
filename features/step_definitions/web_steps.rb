@@ -3,7 +3,7 @@ Given(/^I am on the homepage$/) do
 end
 
 When(/^I click "(.*?)"$/) do |link|
-  click_link(link)
+  click_on(link)
 end
 
 Then(/^I should see "(.*?)"$/) do |text|
