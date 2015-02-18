@@ -5,11 +5,16 @@ class BattleShips < Sinatra::Base
    set :views, Proc.new { File.join(root, "..", "views")}
 
   get '/' do
-    'Hello BattleShips!'
+    @name = "Please tell me your name!"
     erb :index
   end
 
-  get '/Play' do
+  post '/' do
+    @name = params[:player_name]
+    erb :board
+  end
+
+  get '/play' do
     "The board"
   end
 

@@ -1,8 +1,8 @@
 <div>Welcome to Battleships</div>
-
-<form action="/Play">
-      What's your name?
-      <input type="text" name="name">
+<%= @name %>
+<form action="/" method="post">
+      <question>What's your name?</question>
+      <input type="text" value="player name" name="player_name">
       <input type="submit" value="submit" name="submit">
 </form>
 <!-- <div>
