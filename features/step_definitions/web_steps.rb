@@ -26,3 +26,15 @@ end
 Then(/^I should stay on the homepage "(.*?)"$/) do |text|
   expect(page).to have_content text
 end
+
+Given(/^I am on the board page$/) do
+  visit '/board'
+end
+
+Given(/^I enter a board size into the form$/) do
+  fill_in('board_size', :with => '2')
+ end
+
+Then(/^I should see the board$/) do
+  pending # express the regexp above with the code you wish you had
+end

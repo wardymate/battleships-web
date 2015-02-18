@@ -1,4 +1,6 @@
 require 'sinatra/base'
+require_relative 'board'
+require_relative 'cell'
 
 class BattleShips < Sinatra::Base
 
@@ -19,6 +21,15 @@ class BattleShips < Sinatra::Base
     end
   end
 
+  get '/board' do 
+    erb :board
+  end
+
+  post '/board' do 
+    @board_size = params[:board_size].to_i
+    @board = Board.new({size: @board_size, content: Cell}) 
+    p @board
+  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
