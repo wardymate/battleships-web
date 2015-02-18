@@ -11,11 +11,12 @@ class BattleShips < Sinatra::Base
 
   post '/' do
     @name = params[:player_name]
-    erb :board
-  end
-
-  get '/play' do
-    "The board"
+    if params[:player_name].empty?
+      @name = "Please tell me your name!"
+      erb :index
+    else
+      erb :board
+    end
   end
 
 
