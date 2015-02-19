@@ -13,31 +13,41 @@ class BattleShips < Sinatra::Base
    set :views, Proc.new { File.join(root, ".", "views")}
 
   get '/' do
-    @name = "Please tell me your name!"
+    @name = "Please provide name and board size"
     erb :index
   end
 
   post '/' do
-    if params[:player_name].empty?
-      @name = "Please tell me your name!"
+    if params[:player_name].empty? || params[:board_size].empty?
+      @name = "Please provide name and board size"
       erb :index
     else
       player = Player.new(params[:player_name])
       session[:me] = player
       game.add_player(player)
       @name = session[:me].name
+      board_size = params[:board_size].to_i
+      board = Board.new({size: board_size, content: Cell})
+      session[:board] = board
+      @grid = board.grid
+      @target = 'This is your first shot'
       erb :board
     end
   end
 
   get '/board' do
+    board = session[:board]
+    @name = session[:me].name
+    @grid = board.grid
+    @target = ''
     erb :board
   end
 
   post '/board' do
-    @board_size = params[:board_size].to_i
-    @board = Board.new({size: @board_size, content: Cell})
-    puts @board.inspect
+    @target = params[:cell_shot]
+    @name = session[:me].name
+    board = session[:board]
+    @grid = board.grid
 
     erb :board
   end

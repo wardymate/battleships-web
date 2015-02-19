@@ -1,9 +1,13 @@
-<div>Welcome to The board</div>
-<div>Hello <%= @name %></div>
- <!-- <%= @board.inspect %> -->
+<div>Welcome to the board <%= @name %></div>
+
+<div>You last shot at <%= @target %></div>
+
+  <% @grid.each do |key,value| %>
+ <div id="<%= key %>">|<%= key %><%= puts value.content %>|</div>
+ <% end %>
 
 <form action="/board" method="post">
-      <question>What size board do you want to play on?</question>
-      <input type="text" name="board_size">
+      <question>What cell would you like to shoot at?</question>
+      <input type="text" name="cell_shot">
       <input type="submit" value="submit" name="submit">
 </form>
