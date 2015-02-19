@@ -7,4 +7,4 @@ Feature: Shooting at a Computer Board
   	Given I am on the board page
     And I enter a grid coordinate "A1"
     When I click "submit"
-    Then the cell I shot at should contain a splash
+    Then the cell "A1" should contain a "splash"

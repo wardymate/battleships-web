@@ -27,7 +27,7 @@ Then(/^I should stay on the homepage "(.*?)"$/) do |text|
   expect(page).to have_content text
 end
 
-Given(/^I am on the board page$/) do 
+Given(/^I am on the board page$/) do
   visit '/'
   fill_in('player_name', :with => 'Carrie')
   fill_in('board_size', :with => '2')
@@ -56,6 +56,6 @@ Given(/^I enter a grid coordinate "(.*?)"$/) do |coordinate|
   fill_in('cell_shot', :with => coordinate)
 end
 
-Then(/^the cell I shot at should contain a splash$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^the cell "(.*?)" should contain a "(.*?)"$/) do |cell, content|
+  page.find_by_id(cell).should have_content(content)
 end

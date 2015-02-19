@@ -4,7 +4,6 @@ class Cell
 
   def initialize
     @hit = false
-    @content = "Water"
   end
 
   def shoot

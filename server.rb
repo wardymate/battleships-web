@@ -3,6 +3,7 @@ require_relative 'lib/board'
 require_relative 'lib/cell'
 require_relative 'lib/player'
 require_relative 'lib/game'
+require_relative 'lib/water'
 
 class BattleShips < Sinatra::Base
 
@@ -28,8 +29,9 @@ class BattleShips < Sinatra::Base
       @name = session[:me].name
       board_size = params[:board_size].to_i
       board = Board.new({size: board_size, content: Cell})
-      session[:board] = board
       @grid = board.grid
+      @grid.each{|cell| cell.last.content = Water.new}
+      session[:board] = board
       @target = 'This is your first shot'
       erb :board
     end
@@ -44,11 +46,12 @@ class BattleShips < Sinatra::Base
   end
 
   post '/board' do
-    @target = params[:cell_shot]
+    target = params[:cell_shot].to_sym
     @name = session[:me].name
     board = session[:board]
-    @grid = board.grid
+    board.shoot_at(target)
 
+    @grid = board.grid
     erb :board
   end
 
