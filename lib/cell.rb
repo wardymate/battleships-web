@@ -7,8 +7,8 @@ class Cell
   end
 
   def shoot
-    content.hit
     @hit = true
+    content.hit
   end
 
   def hit?

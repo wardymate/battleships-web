@@ -3,7 +3,14 @@
 <div>You last shot at <%= @target %></div>
 
   <% @grid.each do |key,value| %>
- <div id="<%= key %>" class = "cell"><%= value %></div>
+ <div id="<%= key %>" class = "cell">
+   <%= value.content %>
+  <% if @message %>
+    <h1><%= @message %></h1>
+
+
+  <% end %>
+ </div>
  <% end %>
 
 <form action="/board" method="post">

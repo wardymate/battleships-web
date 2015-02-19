@@ -46,12 +46,13 @@ class BattleShips < Sinatra::Base
   end
 
   post '/board' do
-    target = params[:cell_shot].to_sym
+    @target = params[:cell_shot].to_sym
     @name = session[:me].name
     board = session[:board]
-    board.shoot_at(target)
-
     @grid = board.grid
+    hash_target = board.grid
+
+    @message = board.shoot_at(@target)
     erb :board
   end
 
