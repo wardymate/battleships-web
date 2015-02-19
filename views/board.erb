@@ -3,7 +3,7 @@
 <div>You last shot at <%= @target %></div>
 
   <% @grid.each do |key,value| %>
- <div id="<%= key %>">|<%= key %><%= puts value.content %>|</div>
+ <div id="<%= key %>">|<%= key %><%= value.content %>|</div>
  <% end %>
 
 <form action="/board" method="post">
