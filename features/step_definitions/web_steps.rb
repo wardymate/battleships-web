@@ -57,6 +57,6 @@ Given(/^I enter a grid coordinate "(.*?)"$/) do |coordinate|
 end
 
 Then(/^the cell "(.*?)" should contain a "(.*?)"$/) do |cell, content|
-  save_and_open_page
+  # save_and_open_page
   page.find_by_id(cell).should have_content(content)
 end

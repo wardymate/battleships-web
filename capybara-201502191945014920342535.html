@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+  <head>
+    <title>Battleships</title>
+    <meta charset = "UTF-8" />
+  </head>
+  <body>
+
+  <div>Welcome to the board </div>
+
+<div>You last shot at </div>
+
+<table border = "2" width ="250" cellpadding="10" cellspacing="5" bgcolor="#efefef">
+
+    <th width="15"></th>
+
+        <th width="15"></th>
+
+        <th width="15"></th>
+
+        <th width="15"></th>
+
+    
+    <tr>
+    
+      <td> </td>
+    
+      <td> </td>
+    
+      <tr>
+    
+      <td> </td>
+    
+      <td> </td>
+    
+      <tr>
+    
+      <td> </td>
+    
+      <td> </td>
+    
+      <tr>
+    
+      <td> </td>
+    
+      <td> </td>
+    
+  
+</table>
+
+<form action="/board" method="post">
+      <question>What cell would you like to shoot at?</question>
+      <input type="text" name="cell_shot">
+      <input type="submit" value="submit" name="submit">
+</form>
+
+  
+  </body>
+</html>

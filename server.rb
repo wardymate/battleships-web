@@ -8,8 +8,8 @@ require_relative 'lib/water'
 class BattleShips < Sinatra::Base
 
     game = Game.new
-
     enable :sessions
+    game_grid = Array.new(board_size) {Array.new(board_size) {'~'}}
 
    set :views, Proc.new { File.join(root, ".", "views")}
 
@@ -29,9 +29,9 @@ class BattleShips < Sinatra::Base
       @name = session[:me].name
       board_size = params[:board_size].to_i
       board = Board.new({size: board_size, content: Cell})
-      @grid = board.grid
-      @grid.each{|cell| cell.last.content = Water.new}
+      board.grid.each{|cell| cell.last.content = Water.new}
       session[:board] = board
+      @grid = game_grid
       @target = 'This is your first shot'
       erb :board
     end
@@ -40,7 +40,8 @@ class BattleShips < Sinatra::Base
   get '/board' do
     board = session[:board]
     @name = session[:me].name
-    @grid = board.grid
+    @grid = board.grid.values.each_slice(5).map{|row| row}
+    #@grid = Array.new(10) {Array.new(10) {'~'}}
     @target = ''
     erb :board
   end
@@ -50,7 +51,7 @@ class BattleShips < Sinatra::Base
     @name = session[:me].name
     board = session[:board]
     @grid = board.grid
-    hash_target = board.grid
+
 
     @message = board.shoot_at(@target)
     erb :board

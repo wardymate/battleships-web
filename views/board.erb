@@ -1,17 +1,21 @@
-<div>Welcome to the board <%= @name %></div>
+<div>Welcome to the board <% @name %></div>
 
-<div>You last shot at <%= @target %></div>
+<div>You last shot at <% @target %></div>
 
-  <% @grid.each do |key,value| %>
- <div id="<%= key %>" class = "cell">
-   <%= value.content %>
-  <% if @message %>
-    <h1><%= @message %></h1>
-
-
+<table border = "2" width ="250" cellpadding="10" cellspacing="5" bgcolor="#efefef">
+  <th width="15"></th>
+  <% @grid.each.with_index(1) do |row,index| %>
+    <th><%= (index + 64).chr %></th>
   <% end %>
- </div>
- <% end %>
+  <% @grid.each.with_index(1) do |row, index| %>
+    <tr>
+    <th><%= index %></th>
+    <% row.each do |content| %>
+      <td><%= content %> </td>
+    <% end %>
+    </tr>
+  <% end %>
+</table>
 
 <form action="/board" method="post">
       <question>What cell would you like to shoot at?</question>
